@@ -17,7 +17,7 @@ const MapComponent = ({ path, currentPosition }) => {
         if (!googleMapRef.current) {
             initializeMap();
         }
-    }, []);
+    });
 
     useEffect(() => {
         if (path.length > 0) {
@@ -26,11 +26,11 @@ const MapComponent = ({ path, currentPosition }) => {
             googleMapRef.current.fitBounds(bounds);
         }
         updatePolyline();
-    }, [path]);
+    });
 
     useEffect(() => {
         updateMarker();
-    }, [currentPosition]);
+    });
 
     const updateMarker = () => {
         if (!currentPosition || !googleMapRef.current) return;
