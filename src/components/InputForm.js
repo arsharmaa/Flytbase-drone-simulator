@@ -49,7 +49,7 @@ const InputForm = ({ onDataSubmit }) => {
                 {coordinates.map((coordinate, index) => (
                     <div key={index} className="flex items-center mb-4">
                         <div className="flex-grow">
-                            <label className="block text-gray-300 mb-2">Latitude:</label>
+                            <label className="block text-gray-300 mb-2">Add a Latitude:</label>
                             <input
                                 type="text"
                                 name="lat"
@@ -57,7 +57,7 @@ const InputForm = ({ onDataSubmit }) => {
                                 onChange={(e) => handleCoordinateChange(index, e)}
                                 className="w-full px-3 py-2 border border-gray-600 rounded-md bg-gray-800 text-gray-100 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                             />
-                            <label className="block text-gray-300 mb-2">Longitude:</label>
+                            <label className="block text-gray-300 mb-2">Add a Longitude:</label>
                             <input
                                 type="text"
                                 name="lng"
@@ -80,7 +80,7 @@ const InputForm = ({ onDataSubmit }) => {
                     onClick={handleAddCoordinate}
                     className="mb-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition duration-300 focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                 >
-                    Add Coordinate
+                    Add More Coordinates
                 </button>
                 <div className="mb-4">
                     <label className="block text-gray-300 mb-2">Upload JSON File:</label>

@@ -84,10 +84,10 @@ const App = () => {
             <img
               src={droneImg}
               alt="Drone Simulator Logo"
-              className="h-20 w-20 md:h-72 md:w-72 object-contain"
+              className="h-20 w-20 md:h-72 md:w-72 object-contain mr-16"
             />
             <div className="ml-4">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-blue-400">
+              <h1 className="text-4xl md:text-5xl font-extrabold text-blue-400 mb-8">
                 Drone Simulator
               </h1>
               <p className="text-gray-300 text-sm md:text-base mt-1">
@@ -99,29 +99,31 @@ const App = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Form Section */}
-        <div className="md:col-span-1">
-          <button
-            onClick={toggleForm}
-            className="mb-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md shadow-md transition duration-300"
-          >
-            {showForm ? "Hide Form" : "Show Form"}
-          </button>
-          {showForm && (
-            <div className="p-4 bg-gray-700 rounded-lg shadow-md w-full md:w-10/12 lg:w-8/12">
-              <InputForm onDataSubmit={handleDataSubmit} />
-            </div>
-          )}
-        </div>
+      <main className="flex-1 container mx-auto px-6 py-6">
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Map Section */}
+          <section className={`${showForm ? "w-full md:w-2/3" : "w-full md:w-full"} relative mb-32 h-[calc(100vh-16rem)] bg-gray-700 rounded-md overflow-hidden shadow-md`}>
+            <MapComponent
+              path={path}
+              currentPosition={currentPosition || defaultPosition}
+            />
+          </section>
 
-        {/* Map Section */}
-        <section className="mb-24 relative col-span-2 w-full h-[calc(100vh-16rem)] bg-gray-700 rounded-md overflow-hidden shadow-md">
-          <MapComponent
-            path={path}
-            currentPosition={currentPosition || defaultPosition}
-          />
-        </section>
+          {/* Form Section */}
+          <div className="w-full md:w-1/3 flex flex-col items-center">
+            <button
+              onClick={toggleForm}
+              className="mb-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md shadow-md transition duration-300"
+            >
+              {showForm ? "Hide Form" : "Show Form"}
+            </button>
+            {showForm && (
+              <div className="p-4 bg-gray-700 rounded-lg shadow-md w-full">
+                <InputForm onDataSubmit={handleDataSubmit} />
+              </div>
+            )}
+          </div>
+        </div>
       </main>
 
       {/* Simulation Controls */}
