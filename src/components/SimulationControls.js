@@ -12,24 +12,35 @@ const SimulationControls = ({
     totalPathLength,
 }) => {
     const [showControls, setShowControls] = useState(true);
+    const [errorMessage, setErrorMessage] = useState("");
     const isAtStart = currentIndex === 0;
     const isAtEnd = currentIndex === totalPathLength - 1;
 
     const toggleControls = () => setShowControls(!showControls);
 
+    const handleStartClick = () => {
+        if (totalPathLength === 0) {
+            setErrorMessage("Please enter valid coordinates or upload a JSON file to start the simulation.");
+        } else {
+            setErrorMessage("");
+            onStart();
+        }
+    };
+
     return (
         <div className="w-full bg-gray-900 p-4 border-t-2 border-gray-700 mt-4 fixed bottom-0 left-0">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-bold text-blue-400">Simulation Controls</h2>
                 <button onClick={toggleControls} className="focus:outline-none">
-                    {showControls ? <FaChevronDown size={20} /> : <FaChevronUp size={20} />}
+                    {showControls ? <FaChevronUp size={20} /> : <FaChevronDown size={20} />}
                 </button>
             </div>
             {showControls && (
                 <div className="flex flex-col md:flex-row gap-4 items-center justify-center">
+                    {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>}
                     {/* Start/Restart Button */}
                     <button
-                        onClick={onStart}
+                        onClick={handleStartClick}
                         disabled={isSimulationRunning && !isPaused && !isAtEnd}
                         className={`w-full md:w-auto ${isSimulationRunning && !isPaused && !isAtEnd
                             ? "bg-gray-600 cursor-not-allowed"
